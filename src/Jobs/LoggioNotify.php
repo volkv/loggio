@@ -15,7 +15,7 @@ class LoggioNotify
     {
 
         // Clean old entries
-        LoggioModel::where('date', '<', now()->subDay()->format('Y-m-d'))->delete();
+        LoggioModel::where('date', '<', now()->subWeek()->format('Y-m-d'))->delete();
 
         $message = config('app.name') . '@' . app()->environment() . ': ' . PHP_EOL . PHP_EOL;
 
