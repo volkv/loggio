@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-composer require volkv/loggio
+composer require volkv/loggio "*"
 ```
 
 ```bash
