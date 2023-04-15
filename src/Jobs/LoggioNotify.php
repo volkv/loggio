@@ -19,8 +19,8 @@ class LoggioNotify
         $allSlugs = LoggioModel::select('activity_slug')->distinct()->pluck('activity_slug')->toArray();
 
 
-        $items = LoggioModel::where('date', now())->pluck('count', 'activity_slug');
-        $prevItems = LoggioModel::where('date', now()->subDay())->pluck('count', 'activity_slug');
+        $items = LoggioModel::where('date', now()->format('Y-m-d'))->pluck('count', 'activity_slug');
+        $prevItems = LoggioModel::where('date', now()->subDay()->format('Y-m-d'))->pluck('count', 'activity_slug');
 
         foreach ($allSlugs as $slug) {
             $items[$slug] = $items[$slug] ?? 0;

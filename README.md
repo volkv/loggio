@@ -30,3 +30,5 @@ Loggio::increment('your job');
 Loggio::setCount('your job', 10);
 Loggio::addCount('your job', 2);
 ```
+
+Tested with MySQL and PostgreSQL
