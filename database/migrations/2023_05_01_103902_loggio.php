@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('activity_slug');
             $table->integer('count')->default(0);
 
-            $table->index(['activity_slug']);
+            $table->index(['date']);
             $table->unique(['date','activity_slug']);
 
 
