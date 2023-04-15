@@ -22,12 +22,14 @@ class LoggioNotify
         $allSlugs = LoggioModel::select('activity_slug')->distinct()->pluck('activity_slug')->toArray();
 
 
-        $entries = LoggioModel::where('date', now()->format('Y-m-d'))->pluck('count', 'activity_slug');
+        $entries = LoggioModel::where('date', now()->format('Y-m-d'))->pluck('count', 'activity_slug')->toArray();
         $prevItems = LoggioModel::where('date', now()->subDay()->format('Y-m-d'))->pluck('count', 'activity_slug');
 
         foreach ($allSlugs as $slug) {
             $entries[$slug] = $entries[$slug] ?? 0;
         }
+        
+        ksort($entries);
 
         foreach ($entries as $slug => $count) {
 
