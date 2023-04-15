@@ -15,9 +15,9 @@ class LoggioNotify
     {
 
         // Clean old entries
-        LoggioModel::where('date','<',now()->subDay()->format('Y-m-d'))->delete();
+        LoggioModel::where('date', '<', now()->subDay()->format('Y-m-d'))->delete();
 
-        $message = config('app.name').'@'.app()->environment().': '.PHP_EOL.PHP_EOL;
+        $message = config('app.name') . '@' . app()->environment() . ': ' . PHP_EOL . PHP_EOL;
 
         $allSlugs = LoggioModel::select('activity_slug')->distinct()->pluck('activity_slug')->toArray();
 
@@ -28,7 +28,7 @@ class LoggioNotify
         foreach ($allSlugs as $slug) {
             $entries[$slug] = $entries[$slug] ?? 0;
         }
-        
+
         ksort($entries);
 
         foreach ($entries as $slug => $count) {
@@ -37,7 +37,7 @@ class LoggioNotify
             $diff = $count - $prevCount;
             $diff = $diff > 0 ? "+{$diff}" : $diff;
 
-            $message .= "$slug: $count | $diff".PHP_EOL;
+            $message .= "$slug: $count | $diff" . PHP_EOL;
         }
 
 

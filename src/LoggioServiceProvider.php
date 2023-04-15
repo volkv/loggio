@@ -10,9 +10,9 @@ class LoggioServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $this->publishes([__DIR__.'/../config/loggio.php' => config_path('loggio.php')]);
+        $this->publishes([__DIR__ . '/../config/loggio.php' => config_path('loggio.php')]);
 
     }
 

@@ -2,10 +2,11 @@
 
 namespace Volkv\Loggio\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class LoggioModel extends Model
 {

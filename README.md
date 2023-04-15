@@ -5,11 +5,13 @@
 ```bash
 composer require volkv/loggio
 ```
+
 ```bash
 php artisan migrate
 ````
 
 You can optionally publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Volkv\Loggio\LoggioServiceProvider"
 ```
@@ -18,11 +20,14 @@ php artisan vendor:publish --provider="Volkv\Loggio\LoggioServiceProvider"
 
 * Add  `new LoggioNotify` job to the `app/Console/Kernel.php` scheduler with a `->dailyAt()` option
 * Add Telegram credentials to your `.env`
+
 ```dotenv
 LOGGIO_TELEGRAM_BOT_TOKEN=
 LOGGIO_TELEGRAM_CHAT_ID=
 ```
+
 ## Usage
+
 ```php
 use Volkv\Loggio\Loggio;
 

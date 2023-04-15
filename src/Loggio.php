@@ -24,6 +24,14 @@ class Loggio
 
     }
 
+    private static function getRecordBySlug(string $activity_slug): LoggioModel
+    {
+
+        $date = Carbon::now()->timezone(config('loggio.timezone', 'UTC'))->format('Y-m-d');
+
+        return LoggioModel::firstOrNew(compact('date', 'activity_slug'));
+
+    }
 
     static function setCount(string $activitySlug, int $count): void
     {
@@ -31,15 +39,6 @@ class Loggio
         $record = self::getRecordBySlug($activitySlug);
         $record->count = $count;
         $record->saveQuietly();
-
-    }
-
-    private static function getRecordBySlug(string $activity_slug): LoggioModel
-    {
-
-        $date = Carbon::now()->timezone(config('loggio.timezone', 'UTC'))->format('Y-m-d');
-
-        return LoggioModel::firstOrNew(compact('date','activity_slug'));
 
     }
 
