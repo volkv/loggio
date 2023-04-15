@@ -1,4 +1,4 @@
-### Loggio - is a simple events logger (`event:count`) with a daily reports to Telegram
+### Loggio - is a simple event logger (`event:count`) with a daily reports to Telegram
 
 ## Installation
 
