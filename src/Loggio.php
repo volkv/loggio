@@ -19,7 +19,7 @@ class Loggio
     {
 
         $record = self::getRecordBySlug($activitySlug);
-        $record->increment('count', $add);
+        $record->count = $record->count ? $record->count + $add : $add;
         $record->saveQuietly();
 
     }
