@@ -18,7 +18,7 @@ php artisan vendor:publish --provider="Volkv\Loggio\LoggioServiceProvider"
 
 ## Configuration
 
-* Add  `new LoggioNotify` job to the `app/Console/Kernel.php` scheduler with a `->dailyAt()` option
+* Add `$schedule->job(new LoggioNotify)->environments(['production'])->dailyAt('6:30');` job to the `app/Console/Kernel.php` scheduler with a `->dailyAt()` option
 * Add Telegram credentials to your `.env`
 
 ```dotenv
