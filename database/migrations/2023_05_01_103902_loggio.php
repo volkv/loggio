@@ -15,11 +15,11 @@ return new class extends Migration {
         Schema::create('loggio', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('activity_slug');
+            $table->string('event_name');
             $table->integer('count')->default(0);
 
             $table->index(['date']);
-            $table->unique(['date', 'activity_slug']);
+            $table->unique(['date', 'event_name']);
 
 
         });

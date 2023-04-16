@@ -8,46 +8,46 @@ use Volkv\Loggio\Models\LoggioModel;
 class Loggio
 {
 
-    static function increment(string $activitySlug): void
+    static function increment(string $eventName): void
     {
 
-        self::addCount($activitySlug, 1);
+        self::addCount($eventName, 1);
 
     }
 
-    static function addCount(string $activitySlug, int $add): void
+    static function addCount(string $eventName, int $add): void
     {
 
         if (!self::shouldRun()) {
             return;
         }
 
-        $record = self::getRecordBySlug($activitySlug);
+        $record = self::getRecordByEventName($eventName);
         $record->count = $record->count ? $record->count + $add : $add;
         $record->saveQuietly();
 
     }
 
 
-    static function setCount(string $activitySlug, int $count): void
+    static function setCount(string $eventName, int $count): void
     {
 
         if (!self::shouldRun()) {
             return;
         }
 
-        $record = self::getRecordBySlug($activitySlug);
+        $record = self::getRecordByEventName($eventName);
         $record->count = $count;
         $record->saveQuietly();
 
     }
 
-    private static function getRecordBySlug(string $activity_slug): LoggioModel
+    private static function getRecordByEventName(string $event_name): LoggioModel
     {
 
         $date = Carbon::now()->timezone(config('loggio.timezone', 'UTC'))->format('Y-m-d');
 
-        return LoggioModel::firstOrNew(compact('date', 'activity_slug'));
+        return LoggioModel::firstOrNew(compact('date', 'event_name'));
 
     }
 
