@@ -30,7 +30,7 @@ LOGGIO_TELEGRAM_CHAT_ID=
 ```php
 use Volkv\Loggio\Jobs\LoggioNotify;
 
- $schedule->job(new LoggioNotify)->environments(['production'])->dailyAt('6:30');
+$schedule->job(new LoggioNotify)->environments(['production'])->dailyAt('6:30');
  ``` 
 Please note, that you will get previous (since notify job moment) day's stats compared to 2 day before
 ## Usage
