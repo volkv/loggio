@@ -18,8 +18,26 @@ class Loggio
     static function addCount(string $activitySlug, int $add): void
     {
 
+        if (!self::shouldRun()) {
+            return;
+        }
+
         $record = self::getRecordBySlug($activitySlug);
         $record->count = $record->count ? $record->count + $add : $add;
+        $record->saveQuietly();
+
+    }
+
+
+    static function setCount(string $activitySlug, int $count): void
+    {
+
+        if (!self::shouldRun()) {
+            return;
+        }
+
+        $record = self::getRecordBySlug($activitySlug);
+        $record->count = $count;
         $record->saveQuietly();
 
     }
@@ -33,13 +51,9 @@ class Loggio
 
     }
 
-    static function setCount(string $activitySlug, int $count): void
+    private static function shouldRun(): bool
     {
-
-        $record = self::getRecordBySlug($activitySlug);
-        $record->count = $count;
-        $record->saveQuietly();
-
+        return !(config('loggio.production_only', true) && !app()->isProduction());
     }
 
 }
