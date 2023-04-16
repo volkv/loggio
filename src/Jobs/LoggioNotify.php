@@ -21,9 +21,8 @@ class LoggioNotify
 
         $allSlugs = LoggioModel::select('event_name')->distinct()->pluck('event_name')->toArray();
 
-
-        $entries = LoggioModel::where('date', now()->format('Y-m-d'))->pluck('count', 'event_name')->toArray();
-        $prevItems = LoggioModel::where('date', now()->subDay()->format('Y-m-d'))->pluck('count', 'event_name');
+        $entries = LoggioModel::where('date', now()->subDay()->format('Y-m-d'))->pluck('count', 'event_name')->toArray();
+        $prevItems = LoggioModel::where('date', now()->subDays(2)->format('Y-m-d'))->pluck('count', 'event_name');
 
         foreach ($allSlugs as $slug) {
             $entries[$slug] = $entries[$slug] ?? 0;
