@@ -47,7 +47,7 @@ class Loggio
         $record->saveQuietly();
 
     }
-    
+
     private static function getRecordByEventName(string $event_name, ?Carbon $date = null): LoggioModel
     {
 
