@@ -55,7 +55,7 @@ class MyNotifyJob
     public function handle()
     {
         $commentsCount = Comment::where('created_at', now()->subDay()->format('Y-m-d'))->count();
-        Loggio::setCount("New comments", $commentsCount);
+        Loggio::setCountYesterday("New comments", $commentsCount);
 
         LoggioNotify::dispatch();
     }
