@@ -29,23 +29,31 @@ class Loggio
     }
 
 
-    static function setCount(string $eventName, int $count): void
+    static function setCountYesterday(string $eventName, int $count): void
+    {
+        self::setCount($eventName, $count, now()->subDay());
+
+    }
+
+    static function setCount(string $eventName, int $count, ?Carbon $date = null): void
     {
 
         if (!self::shouldRun()) {
             return;
         }
 
-        $record = self::getRecordByEventName($eventName);
+        $record = self::getRecordByEventName($eventName, $date);
         $record->count = $count;
         $record->saveQuietly();
 
     }
-
-    private static function getRecordByEventName(string $event_name): LoggioModel
+    
+    private static function getRecordByEventName(string $event_name, ?Carbon $date = null): LoggioModel
     {
 
-        $date = Carbon::now()->timezone(config('loggio.timezone', 'UTC'))->format('Y-m-d');
+        $date = $date ?? Carbon::now();
+
+        $date = $date->timezone(config('loggio.timezone', 'UTC'))->format('Y-m-d');
 
         return LoggioModel::firstOrNew(compact('date', 'event_name'));
 
