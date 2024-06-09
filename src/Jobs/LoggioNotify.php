@@ -34,15 +34,19 @@ class LoggioNotify
 
             $prevCount = $prevItems[$slug] ?? 0;
             $diff = $count - $prevCount;
+            $diffPercent = round($diff / $prevCount,1) * 100;
 
             $count = $count == 0 ? "0️⃣" : $count;
-            $icon = "🟠 ";
-            if ($diff > 0) {
+
+            $icon = "";
+
+            if ($diffPercent > 40) {
                 $icon = "🟢 +";
-            } elseif ($diff < 0) {
+            } elseif ($diffPercent < -40) {
                 $icon = "🔴 ";
             }
-            $message .= "{$slug}: {$count} {$icon}{$diff}" . PHP_EOL;
+
+            $message .= "{$slug}: {$count} {$icon}{$diff} ({$diffPercent}%)" . PHP_EOL;
         }
 
         LoggioTelegram::send($message);
