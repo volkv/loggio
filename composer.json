@@ -2,7 +2,7 @@
   "name": "volkv/loggio",
   "type": "library",
   "require": {
-    "php": "^>=8",
+    "php": ">=8",
     "illuminate/support": ">=9"
   },
   "require-dev": {
